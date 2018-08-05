@@ -39,6 +39,8 @@ private:
 };
 
 int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
     class Solution s = Solution();
     printf("answer %f\n",s.myPow(2.0,10));
     printf("answer %f\n",s.myPow(2.0,-2));
