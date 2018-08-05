@@ -7,10 +7,6 @@ typedef unsigned long long ull;
 
 class string_Range_Hash {
     public:
-        string_Range_Hash(ull seed){
-            B = seed;
-        }
-
         void cal_Hash(string s){
             int length_s = s.length();
             Hash[0] = s[0];
@@ -22,6 +18,11 @@ class string_Range_Hash {
                 B_power[i] = B_power[i-1] * B;
             }
             return ;
+        }
+
+        string_Range_Hash(ull seed, string s){
+            B = seed;
+            cal_Hash(s);
         }
 
         ull range_Hash_Query(int a, int b){
@@ -47,8 +48,8 @@ int main(){
     printf("%s",s.c_str());
     printf("%s\n",s.substr(0,11).c_str());
     printf("%s\n",s.substr(12,11).c_str());
-    string_Range_Hash sRH = string_Range_Hash(String_Hash_Seed);
-    sRH.cal_Hash(s);
+    string_Range_Hash sRH = string_Range_Hash(String_Hash_Seed,s);
+    //sRH.cal_Hash(s);
     ull h1 = sRH.range_Hash_Query(0,12);
     ull h2 = sRH.range_Hash_Query(12,24);
     cout<<h1<<' '<<h2<<endl;
