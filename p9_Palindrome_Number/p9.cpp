@@ -9,20 +9,15 @@ public:
         }else if (x==0) {
             return true;
         }
-        int l = 0;
-        while (x > 0) {
-            n[l] = x%10;
+        int ox = x;
+        int n = 0;
+        while (x) {
+            n = n*10 + x%10;
             x /= 10;
-            l ++;
         }
-        for (int i = 0; i < l/2; i++) {
-            if (n[i] != n[l-i-1]) return false;
-        }
-        return true;
+        return n==ox;
 
     }
-private:
-    int n[32];
 };
 
 int main() {
