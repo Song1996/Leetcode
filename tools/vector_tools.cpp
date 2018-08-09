@@ -31,9 +31,7 @@ public:
         if (*(first+l)>=tar) return l;
         if (*(first+r)<=tar) return r;
         while (l < r - 1) {
-            //printf("%d %d\n",l,r);
             mid = (l+r)/2;
-            printf("%d %d %d\n",*(first+l),*(first+r),*(first+mid));
             if (*(first+mid) < tar) l = mid;
             else if (*(first+mid) == tar) {
                 int i = 0;
@@ -42,7 +40,7 @@ public:
             }
             else r = mid; 
         }
-        return (tar-*(first+l) >= *(first+r) - tar)?l:r;
+        return (tar-*(first+l) >= *(first+r) - tar)?r:l;
     }
 
     void vector_display(vector<int>& v) {
@@ -51,15 +49,12 @@ public:
         }printf("\n");
     }
 };
-
 int main () {
     vector<int> v;
-    v.push_back(-4);
-    v.push_back(-1);
     v.push_back(1);
-    v.push_back(2);
+    v.push_back(55);
     VectorTools s;
     s.sorted(v.begin(), v.end());
     s.vector_display(v);
-    printf("%d\n",s.binary_search(v.begin(),v.size(),true, 1));
+    printf("%d\n",s.binary_search(v.begin(),v.size(),true, 2));
 }

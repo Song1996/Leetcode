@@ -41,7 +41,7 @@ public:
             }
             else r = mid; 
         }
-        return (tar-*(first+l) >= *(first+r) - tar)?l:r;
+        return (tar-*(first+l) >= *(first+r) - tar)?r:l;
     }
 
     void vector_display(vector<int>& v) {
