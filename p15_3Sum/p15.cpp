@@ -68,12 +68,12 @@ public:
                 int l,r;
                 l = nums[i];
                 r = nums[j];
-                if(!(lasti==-1&&lastj==-1)&&nums[i]==nums[lasti]&&nums[j]==nums[lastj]){
-                    continue;
-                }
                 int tar = -1* (l + r);
                 if ( nums[j+1+V.binary_search(nums.begin()+j+1,nums.size()-j-1,true,tar)]==tar){
-                    vector<int> tempv{l,r,tar};
+                    vector<int> tempv;
+                    tempv.push_back(l);
+                    tempv.push_back(r);
+                    tempv.push_back(tar);
                     result.push_back(tempv);
                     lasti = i; lastj =j;
                 }
