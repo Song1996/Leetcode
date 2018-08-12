@@ -4,6 +4,32 @@ using namespace std;
 
 class VectorTools{
 public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        if (nums.size() == 0) return vector<int>({-1,-1});
+        
+        vector<int> ans(2,-1);
+        // first search for left range
+        int left = 0, right = nums.size()-1;
+        while (left +1 < right) {
+            int mid = left + (right-left)/2;
+            if (nums[mid] >= target) right = mid;
+            else left = mid;
+        }
+        if (nums[right] == target) ans[0] = right;
+        if (nums[left] == target) ans[0] = left;
+        
+        // next search for right range
+        left = 0; right = nums.size()-1;
+        while (left +1 < right) {
+            int mid = left + (right-left)/2;
+            if (nums[mid] <= target) left = mid;
+            else right = mid;
+        }
+        if (nums[left] == target) ans[1] = left;
+        if (nums[right] == target) ans[1] = right;
+        return ans;
+    }
+    
     void sorted(vector<int>::iterator first, vector<int>::iterator last) {
         if (first == last || first + 1 == last) return;
         vector<int>::iterator pivot = first;
