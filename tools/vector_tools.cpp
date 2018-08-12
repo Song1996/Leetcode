@@ -5,28 +5,28 @@ using namespace std;
 class VectorTools{
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
-        if (nums.size() == 0) return vector<int>({-1,-1});
-        
-        vector<int> ans(2,-1);
-        // first search for left range
-        int left = 0, right = nums.size()-1;
-        while (left +1 < right) {
-            int mid = left + (right-left)/2;
-            if (nums[mid] >= target) right = mid;
-            else left = mid;
+        vector<int> ans(2, -1);
+        if(nums.size()==0) return ans;
+        int l = 0;
+        int r = nums.size() - 1;
+        if (nums[l] > target || nums[r] < target) return ans;
+        int mid;
+        while((r-1)>l) {    
+            mid = l + (r-l)/2;       
+            if(nums[mid] >= target) r = mid;
+            else l = mid;
         }
-        if (nums[right] == target) ans[0] = right;
-        if (nums[left] == target) ans[0] = left;
-        
-        // next search for right range
-        left = 0; right = nums.size()-1;
-        while (left +1 < right) {
-            int mid = left + (right-left)/2;
-            if (nums[mid] <= target) left = mid;
-            else right = mid;
+        if(nums[r]==target) ans[0] = r;
+        if(nums[l]==target) ans[0] = l;
+        l = 0;
+        r = nums.size()-1;
+        while((r-1)>l) {
+            mid = l + (r-l)/2;
+            if(nums[mid] <= target) l = mid;
+            else r = mid;
         }
-        if (nums[left] == target) ans[1] = left;
-        if (nums[right] == target) ans[1] = right;
+        if(nums[l] == target) ans[1] = l;
+        if(nums[r] == target) ans[1] = r;
         return ans;
     }
     
