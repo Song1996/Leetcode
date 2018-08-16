@@ -18,8 +18,9 @@ class Solution {
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         if(lists.size()<1) return NULL;
-        ListNode* head;
-        ListNode* p;
+        lists.erase(remove(lists.begin(),lists.end(),(ListNode*)NULL),lists.end());
+        ListNode* head = NULL;
+        ListNode* p = NULL;
         bool fflag = true;
         int minp, minval;
         while(true) {
