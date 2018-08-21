@@ -1,42 +1,38 @@
 #include<iostream>
 #include<vector>
 #include<string>
+#include<stack>
 using namespace std;
 
 class Solution {
 public:
     int evalRPN(vector<string>& tokens) {
-        int start = -1;
-        int ans = myeval(tokens, tokens.size() -1, start);
-        //printf("%d\n",start);
-        return ans;
-    }
-
-    int myeval(vector<string>& tokens, int end, int& start) {
-        //printf("%d %s\n",end,tokens[end].c_str());
-        string op = tokens[end];
-        if(op.length()==1)
-        {   if(op[0]=='*') {
-                int right = myeval(tokens, end-1, start);
-                return myeval(tokens, start, start)*right;                   
-            }else if(op[0]=='+') {
-                int right = myeval(tokens, end-1, start);
-                return myeval(tokens, start, start)+right;                   
-            }else if(op[0]=='-') {
-                int right = myeval(tokens, end-1, start);
-                return myeval(tokens, start, start)-right;            
-            }else if(op[0]=='/') {
-                int right = myeval(tokens, end-1, start);
-                return myeval(tokens, start, start)/right;
-            } else {
-                start = end-1;
-                return atoi(op.c_str());
-            }
-        } else {
-            start = end-1;
-            return atoi(op.c_str());
+        stack<int> s;
+        for(int i = 0; i < tokens.size(); i++) {
+            string& x = tokens[i];
+            if(x.length()==1) {
+                if(x[0]=='*') {
+                    int t1 = s.top(); s.pop();
+                    int t2 = s.top(); s.pop();
+                    s.push(t1*t2);
+                }else if(x[0]=='+') {
+                    int t1 = s.top(); s.pop();
+                    int t2 = s.top(); s.pop();
+                    s.push(t1+t2);                    
+                }else if(x[0]=='-') {
+                    int t1 = s.top(); s.pop();
+                    int t2 = s.top(); s.pop();
+                    s.push(t2-t1);                    
+                }else if(x[0]=='/') {
+                    int t1 = s.top(); s.pop();
+                    int t2 = s.top(); s.pop();
+                    s.push(t2/t1);                    
+                }else {
+                    s.push(atoi(x.c_str()));
+                }
+            }else s.push(atoi(x.c_str()));
         }
-        return 0;
+        return s.top();
     }
 };
 
