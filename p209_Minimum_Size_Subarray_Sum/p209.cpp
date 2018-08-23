@@ -17,10 +17,8 @@ public:
         int t = nums[0];
         int i = 1;
         if(t>=s) return 1;
-        else {
-            while(i<nums.size() && t<s) t += nums[i++];
-            if(i == nums.size() && t<s) return 0;
-        }
+        else while(i<nums.size() && t<s) t += nums[i++];
+        if(i == nums.size() && t<s) return 0;
         int ans = i;
         for(int j = 1; j < nums.size(); j++) {
             t -= nums[j-1];
