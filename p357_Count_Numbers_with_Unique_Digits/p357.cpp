@@ -20,16 +20,12 @@ public:
         vector<int> mem(11, -1);
         mem[1] = 10;
         int ans = 10;
-        for(int i = 2; i <= n; i++) {
-            printf("%d\n",ans);
-            ans += (dp(i, mem)/10)*9;
-        }
+        for(int i = 2; i <= n; i++) ans += (dp(i, mem)/10)*9;
         return ans;
     }
     int dp(int n, vector<int>& mem) {
         if(mem[n]>0) return mem[n];
         mem[n] = (11-n)*dp(n-1, mem);
-        printf("%d %d\n",n,mem[n]);
         return mem[n];
     }
 };
