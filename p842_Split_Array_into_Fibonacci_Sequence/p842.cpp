@@ -32,7 +32,7 @@ public:
         //int t;
         for(int i = 1; i <= S.length()-pos; i++) {
             t = atoi(S.substr(pos,i).c_str());
-            if(t>INT_MAX) continue;
+            if(t>INT_MAX) break;
             ans.push_back(t);
             if(x1<0 && dfs(ans, S, pos+i, t, x2, false)) return true;
             if(x2<0 && dfs(ans, S, pos+i, x1, t, false)) return true;
