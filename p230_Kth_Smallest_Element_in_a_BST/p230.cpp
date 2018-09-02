@@ -21,16 +21,17 @@ struct TreeNode {
 class Solution {
 public:
     int kthSmallest(TreeNode* root, int k) {
-        vector<int> mem;
-        preOrder(root, mem);
-        return mem[k];
+        //vector<int> mem;
+        //preOrder(root, mem);
+        int ans = helper(root, k);
+        return ans;
     }
-    void preOrder(TreeNode* root, vector<int>& mem) {
-        if(root==NULL) return;
-        preOrder(root->left, mem);
-        mem.push_back(root->val);
-        preOrder(root->right, mem);
-        return;
+    int helper(TreeNode* root, int& k) {
+        if(root==NULL) return -1;
+        int ans = helper(root->left, k);
+        if(ans>=0) return ans;
+        if(k==1) return root->val;
+        return helper(root->right, --k);
     }
 };
 
