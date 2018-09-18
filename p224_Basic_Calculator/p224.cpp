@@ -57,5 +57,7 @@ int main() {
     printf("%s = %d\n",x.c_str(),s.calculate(x));
     x = "1-(5)";
     printf("%s = %d\n",x.c_str(),s.calculate(x));
+    x = "1-((5))";
+    printf("%s = %d\n",x.c_str(),s.calculate(x));
     return 0;
 }
